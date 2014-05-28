@@ -25,34 +25,34 @@ POST /:site/getToken - takes the security token for the site and returns a GUID 
 GET /getChunk/:chunkName - returns the chunk (content as HTML). Expects token for site in headers
 
 # The Admin site
-CRUD + pages for the sites
-GET 	/			- lists all the sites, for logged in user
-GET 	/site/new	- get the page to create new site
-POST	/site/new	- creates a new site
-GET 	/site/:id	- returns the page for the site
-PUT		/site/:id	- updates site data
-DELETE 	/site/:id	- deletes the site
+## CRUD + pages for the sites
+* GET 	/			- lists all the sites, for logged in user
+* GET 	/site/new	- get the page to create new site
+* POST	/site/new	- creates a new site
+* GET 	/site/:id	- returns the page for the site
+* PUT		/site/:id	- updates site data
+* DELETE 	/site/:id	- deletes the site
 
-CRUD + pages for the chunks, in a site
-GET 	/site/:siteId/chunk/new 	- shows the add new chunk page
-POST	/site/:siteId/chunk/new 	- add a new chunk
-GET 	/site/:siteId/chunk/:id		- get the content display page for a new chunk
-PUT		/site/:siteId/chunk/:id		- updates the chunk data
-DELETE	/site/:siteId/chunk/:id		- deletes the content
+## CRUD + pages for the chunks, in a site
+* GET 	/site/:siteId/chunk/new 	- shows the add new chunk page
+* POST	/site/:siteId/chunk/new 	- add a new chunk
+* GET 	/site/:siteId/chunk/:id		- get the content display page * for a new chunk
+* PUT		/site/:siteId/chunk/:id		- updates the chunk data
+* DELETE	/site/:siteId/chunk/:id		- deletes the content
 
 
 # Backlog
 ## Iteration 1
-- Create admin pages for sites
-- Add basic authentication for admin site
-- Create admin pages for chunks
-- Create getToken API method
-- Create getChunk API method
-- create simple example site
+* Create admin pages for sites
+* Add basic authentication for admin site
+* Create admin pages for chunks
+* Create getToken API method
+* Create getChunk API method
+* create simple example site
 
 ## Iteration 2
-- come up with nice way of wrapping the calls in an attribute
-- enable other authentication methods
-- do nicer example sites
-- start thinking about pictures
-- use ACE editor for nicer experience editing
+* come up with nice way of wrapping the calls in an attribute
+* enable other authentication methods
+* do nicer example sites
+* start thinking about pictures
+* use ACE editor for nicer experience editing

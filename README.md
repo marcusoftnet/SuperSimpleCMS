@@ -1,8 +1,5 @@
-SuperSimpleCMS
-==============
-
-A Super Simple Chunk Managment System.
-
+Super Simple Chunk Managment System
+===================================
 Many simple pages today is just a single page. SuperSimpleCMS allows you to edit the contents of that page is chunks. For example, the text of the intro block is one chunk of content, managed separately.
 
 In the HTML there will just be simple calls to an API (HOW?) like for example <content site="mySite" name="headerText14"> that will be replaced with the content.
@@ -51,3 +48,11 @@ DELETE	/site/:siteId/chunk/:id		- deletes the content
 - Create admin pages for chunks
 - Create getToken API method
 - Create getChunk API method
+- create simple example site
+
+## Iteration 2
+- come up with nice way of wrapping the calls in an attribute
+- enable other authentication methods
+- do nicer example sites
+- start thinking about pictures
+- use ACE editor for nicer experience editing

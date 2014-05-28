@@ -21,8 +21,8 @@ The content chunks looks like this:
 
 # The API
 The public API (public as in will be called from any site) just have two methods:
-POST /:site/getToken - takes the security token for the site and returns a GUID that is expected to be in the headers for the rest of the GETS
-GET /getChunk/:chunkName - returns the chunk (content as HTML). Expects token for site in headers
+* POST /:site/getToken - takes the security token for the site and returns a GUID that is expected to be in the headers for the rest of the GETS
+* GET /getChunk/:chunkName - returns the chunk (content as HTML). Expects token for site in headers
 
 # The Admin site
 ## CRUD + pages for the sites

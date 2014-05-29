@@ -4,7 +4,8 @@
   "description": "Super Simple Chunk Managment System",
   "main": "app.js",
   "scripts": {
-    "start" : "./node_modules/nodemon/bin/nodemon.js --harmony --watch *.js",
+    "start": "./node_modules/nodemon/bin/nodemon.js --harmony app.js prod",
+    "local" : "./node_modules/nodemon/bin/nodemon.js --harmony --watch *.js",
     "test": "./node_modules/mocha/bin/mocha --harmony-generators -u bdd -R spec"
   },
   "repository": {

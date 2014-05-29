@@ -48,7 +48,7 @@ The public API (public as in will be called from any site) just have two methods
 * Create dbWrap functionailty + tests - DONE
 * Enable config for deployment environment - DONE
 * Set up Heroku configuration - DONE
-* Push first version to Heroku
+* Push first version to Heroku - DONE
 
 ## Iteration 2
 * Create admin pages for sites

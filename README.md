@@ -43,14 +43,26 @@ The public API (public as in will be called from any site) just have two methods
 
 # Backlog
 ## Iteration 1
-* Create admin pages for sites
-* Add basic authentication for admin site
-* Create admin pages for chunks
-* Create getToken API method
-* Create getChunk API method
-* create simple example site
+* Create application structure - DONE
+* Create config + tests - DONE
+* Create dbWrap functionailty + tests - DONE
+* Enable config for deployment environment - DONE
+* Set up Heroku configuration - DONE
+* Push first version to Heroku
 
 ## Iteration 2
+* Create admin pages for sites
+* Create admin pages for chunks
+
+## Iteration 3
+* Add basic authentication for admin site
+* Create getToken API method
+* Create getChunk API method
+
+## Iteration 4
+* create simple example site
+
+## Iteration next
 * come up with nice way of wrapping the calls in an attribute
 * enable other authentication methods
 * do nicer example sites

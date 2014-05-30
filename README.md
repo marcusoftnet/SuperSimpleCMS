@@ -42,7 +42,7 @@ The public API (public as in will be called from any site) just have two methods
 
 
 # Backlog
-## Iteration 1
+## Iteration 1 - DONE
 * Create application structure - DONE
 * Create config + tests - DONE
 * Create dbWrap functionailty + tests - DONE
@@ -50,8 +50,8 @@ The public API (public as in will be called from any site) just have two methods
 * Set up Heroku configuration - DONE
 * Push first version to Heroku - DONE
 
-## Iteration 2
-* Create admin pages for sites
+## Iteration 2 - WIP
+* Create admin pages for sites - WIP
 * Create admin pages for chunks
 
 ## Iteration 3

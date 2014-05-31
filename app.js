@@ -15,6 +15,9 @@ app.use(routes.get("/chunk/:name", chunkRoutes.get));
 app.use(routes.put("/chunk/:name", chunkRoutes.update));
 app.use(routes.get("/chunk/:name/delete", chunkRoutes.del));
 
+// api routes
+var apiRoutes = require("./routes/apiRoutes.js");
+app.use(routes.get("/api/chunk/:name", apiRoutes.getChunk));
 
 // fire it up
 app.listen(config.port);

@@ -13,7 +13,7 @@ app.use(routes.get("/chunk/new", chunkRoutes.showAdd));
 app.use(routes.post("/chunk/new", chunkRoutes.add));
 app.use(routes.get("/chunk/:name", chunkRoutes.get));
 app.use(routes.put("/chunk/:name", chunkRoutes.update));
-app.use(routes.delete("/chunk/:name", chunkRoutes.delete));
+app.use(routes.del("/chunk/:name", chunkRoutes.del));
 
 
 // fire it up

@@ -200,6 +200,26 @@ describe("Chunks administration", function () {
 	});
 
 	describe("Delete existing chunk", function () {
-		it("deletes an existing chunk");
+		var testChunk = {};
+
+		beforeEach(function (done) {
+			co(function *() {
+				testChunk =
+					{
+						name: "chunkName",
+						content : "Some content"
+					};
+
+				yield testHelpers.chunks.insert(testChunk);
+			})(done);
+		});
+
+		it("deletes an existing chunk", function (done) {
+			request
+				.del("/chunk/" + testChunk.name)
+				.expect(204)
+				.expect("location", "/")
+				.end(done);
+		});
 	});
 });

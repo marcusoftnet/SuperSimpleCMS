@@ -54,6 +54,13 @@ module.exports.update = function *(name) {
 	this.set("location", "/chunk/" + chunk.name);
 };
 
+module.exports.del = function *(name) {
+	yield chunkCollection.remove({name : name});
+
+	this.status = 204;
+	this.set("location", "/");
+}
+
 function *getValidationMessage(chunk, expectedNoOfChunksWithName) {
 	if(!chunk.name){
 		return "Name is required";

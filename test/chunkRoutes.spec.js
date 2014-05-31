@@ -63,7 +63,7 @@ describe("Chunks administration", function () {
 			done();
 		});
 
-		it("has a nice form for adding", function (done) {
+		it("has a nice form for adding chunks", function (done) {
 			request
 				.get("/chunk/new")
 				.expect("Content-Type", /html/)
@@ -71,6 +71,7 @@ describe("Chunks administration", function () {
       			.expect(/action=\"\/chunk\/new\" method=\"post\"/)
 				.end(done);
 		});
+
 		it("accepts a chunk with all fields set", function (done) {
 			request
 				.post("/chunk/new")
@@ -116,7 +117,27 @@ describe("Chunks administration", function () {
 	});
 
 	describe("Update existing chunk", function () {
-		it("has a nice form for editing chunks");
+		var chunkName  = "testChunkName";
+		var URL = "/chunk/" + chunkName;
+
+		beforeEach(function (done) {
+			co(function *() {
+				yield testHelpers.chunks.insert(
+					{
+						name: chunkName,
+						content : "Some content"
+					});
+			})(done);
+		});
+
+		it("has a nice form for editing chunks", function (done) {
+			request
+				.get(URL)
+				.expect("Content-Type", /html/)
+      			.expect(200)
+      			.expect(/action=\"\/chunk\/testChunkName\" method=\"put\"/)
+				.end(done);
+		});
 		it("accepts a chunk with all fields set correctly");
 		it("requires name");
 		it("requires name without spaces");

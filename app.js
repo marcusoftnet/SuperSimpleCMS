@@ -11,9 +11,9 @@ var chunkRoutes = require("./routes/chunkRoutes.js");
 app.use(routes.get("/", chunkRoutes.list));
 app.use(routes.get("/chunk/new", chunkRoutes.showAdd));
 app.use(routes.post("/chunk/new", chunkRoutes.add));
-app.use(routes.get("/chunk/:id", chunkRoutes.get));
-app.use(routes.put("/chunk/:id", chunkRoutes.update));
-app.use(routes.delete("/chunk/:id", chunkRoutes.delete));
+app.use(routes.get("/chunk/:name", chunkRoutes.get));
+app.use(routes.put("/chunk/:name", chunkRoutes.update));
+app.use(routes.delete("/chunk/:name", chunkRoutes.delete));
 
 
 // fire it up

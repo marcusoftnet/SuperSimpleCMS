@@ -45,6 +45,11 @@ module.exports.add = function *() {
 	this.status = 201;
 };
 
+module.exports.get = function *(name) {
+	var c = yield chunkCollection.findOne({name:name});
+	this.body = yield render("chunk_edit.html", {chunk : c});
+};
+
 function hasSpaces (s) {
 	return s.split(" ").length > 1;
 }

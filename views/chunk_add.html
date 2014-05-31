@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}New chunk{% endblock %}
+
+{% block content %}
+<h1>Create a new chunk</h1>
+<form name="chunkForm" action="/chunk/new" method="post" class="form-horizontal" role="form">
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label lead">Name:</label>
+	  	<div class="col-sm-10">
+			<input type="text" id="name" name="name" placeholder="A name without spaces" class="form-control input-lg" >
+	  	</div>
+	</div>
+	<div class="form-group">
+		<label for="content" class="col-sm-2 control-label lead">Content:</label>
+	  	<div class="col-sm-10">
+	  		<textarea id="content" name="content" class="form-control input-lg" placeholder="Some content here">
+	  		</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-2">&nbsp;</div>
+		<div class="col-sm-10">
+	  		<input type="submit" value="Add chunk" class="btn btn-primary btn-lg">
+		</div>
+	</div>
+</form>
+{% endblock %}

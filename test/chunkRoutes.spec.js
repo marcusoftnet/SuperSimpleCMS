@@ -86,10 +86,18 @@ describe("Chunks administration", function () {
 				.post("/chunk/new")
 				.send(testChunkForm)
 				.expect(400)
-				.expect("errorMessage", "Name is required")
+				.expect("ErrorMessage", "Name is required")
 				.end(done);
 		});
-		it("requires a name without spaces");
-		it("requires a unique name");
+		it("requires a name without spaces", function (done) {
+			testChunkForm.name = "a name with spaces";
+
+			request
+				.post("/chunk/new")
+				.send(testChunkForm)
+				.expect(400)
+				.expect("ErrorMessage", "Name cannot contain spaces")
+				.end(done);
+		});
 	})
 });

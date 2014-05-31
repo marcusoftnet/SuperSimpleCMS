@@ -25,8 +25,18 @@ module.exports.add = function *() {
 		return;
 	}
 
+	if(hasSpaces(chunk.name)){
+		this.set("ErrorMessage", "Name cannot contain spaces");
+		this.status = 400;
+		return;
+	}
+
 	yield chunkCollection.insert(chunk);
 
 	this.set("location", "/chunk/" + chunk.name);
 	this.status = 201;
 };
+
+function hasSpaces (s) {
+	return s.split(" ").length > 1;
+}

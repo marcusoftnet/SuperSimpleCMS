@@ -113,5 +113,17 @@ describe("Chunks administration", function () {
 					.end(done);
 			})();
 		});
-	})
+	});
+
+	describe("Update existing chunk", function () {
+		it("has a nice form for editing chunks");
+		it("accepts a chunk with all fields set correctly");
+		it("requires name");
+		it("requires name without spaces");
+		it("requires unique name");
+	});
+
+	describe("Delete existing chunk", function () {
+		it("deletes an existing chunk");
+	});
 });

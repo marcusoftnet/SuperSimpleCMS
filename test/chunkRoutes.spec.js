@@ -157,7 +157,16 @@ describe("Chunks administration", function () {
 				.expect("location", updateURL)
 				.end(done);
 		});
-		it("requires name");
+		it("requires a name", function (done) {
+			delete testChunk.name;
+
+			request
+				.put(updateURL)
+				.send(testChunk)
+				.expect(400)
+				.expect("ErrorMessage", "Name is required")
+				.end(done);
+		});
 		it("requires name without spaces");
 		it("requires unique name");
 	});

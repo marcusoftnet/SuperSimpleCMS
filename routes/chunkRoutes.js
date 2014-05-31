@@ -19,21 +19,8 @@ module.exports.add = function *() {
 	chunk.updated_at = chunk._created_at;
 	chunk.created_by = "MARCUS"; // TODO: Logged in user
 
-	if(!chunk.name){
-		this.set("ErrorMessage", "Name is required");
-		this.status = 400;
-		return;
-	}
-
-	if(hasSpaces(chunk.name)){
-		this.set("ErrorMessage", "Name cannot contain spaces");
-		this.status = 400;
-		return;
-	}
-
-	var unique = yield nameUnique(chunk.name);
-	if(!unique){
-		var message = "Name must be unique. '" + chunk.name + "' is already used";
+	var message = yield getValidationMessage(chunk, 0);
+	if(message.length > 0){
 		this.set("ErrorMessage", message);
 		this.status = 400;
 		return;
@@ -54,6 +41,13 @@ module.exports.update = function *(name) {
 	var chunk = yield chunkCollection.findOne({name:name});
 	var parsedChunkForm = yield parse(this);
 
+	var message = yield getValidationMessage(parsedChunkForm, 1);
+	if(message.length > 0){
+		this.set("ErrorMessage", message);
+		this.status = 400;
+		return;
+	}
+
 	yield chunkCollection.updateById(chunk._id, parsedChunkForm);
 
 	this.status = 204;
@@ -64,7 +58,23 @@ function hasSpaces (s) {
 	return s.split(" ").length > 1;
 }
 
-function *nameUnique(name){
-	var numberOfOccurances = yield chunkCollection.count({ name: name });
-	return numberOfOccurances === 0;
+function *numberOfOccurances(name){
+	return yield chunkCollection.count({ name: name });
 };
+
+function *getValidationMessage(chunk, expectedNoOfChunksWithName) {
+	if(!chunk.name){
+		return "Name is required";
+	}
+
+	if(hasSpaces(chunk.name)){
+		return "Name cannot contain spaces";
+	}
+
+	var noOfNames = yield numberOfOccurances(chunk.name);
+	if(noOfNames != expectedNoOfChunksWithName){
+		return "Name must be unique. '" + chunk.name + "' is already used";
+	}
+
+	return "";
+}

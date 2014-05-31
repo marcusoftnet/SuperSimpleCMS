@@ -125,7 +125,10 @@ describe("Chunks administration", function () {
 				yield testHelpers.chunks.insert(
 					{
 						name: chunkName,
-						content : "Some content"
+						content : "Some content",
+						created_by : "Marcus",
+						created_at : new Date(2014-05-31),
+						updated_at : new Date
 					});
 			})(done);
 		});
@@ -136,6 +139,9 @@ describe("Chunks administration", function () {
 				.expect("Content-Type", /html/)
       			.expect(200)
       			.expect(/action=\"\/chunk\/testChunkName\" method=\"put\"/)
+      			.expect(/Marcus/)
+      			.expect(/Some content/)
+      			.expect(/Sat May 31 2014/)
 				.end(done);
 		});
 		it("accepts a chunk with all fields set correctly");

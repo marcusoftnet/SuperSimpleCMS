@@ -23,7 +23,7 @@ describe("Chunks administration", function () {
 				];
 
 				request
-					.get("/chunk")
+					.get("/")
 					.expect('Content-Type', /html/)
 	      			.expect(200)
 					.end(done)

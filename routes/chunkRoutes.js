@@ -54,14 +54,6 @@ module.exports.update = function *(name) {
 	this.set("location", "/chunk/" + chunk.name);
 };
 
-function hasSpaces (s) {
-	return s.split(" ").length > 1;
-}
-
-function *numberOfOccurances(name){
-	return yield chunkCollection.count({ name: name });
-};
-
 function *getValidationMessage(chunk, expectedNoOfChunksWithName) {
 	if(!chunk.name){
 		return "Name is required";
@@ -72,9 +64,17 @@ function *getValidationMessage(chunk, expectedNoOfChunksWithName) {
 	}
 
 	var noOfNames = yield numberOfOccurances(chunk.name);
-	if(noOfNames != expectedNoOfChunksWithName){
+	if(noOfNames > expectedNoOfChunksWithName){
 		return "Name must be unique. '" + chunk.name + "' is already used";
 	}
 
 	return "";
+};
+
+function hasSpaces (s) {
+	return s.split(" ").length > 1;
 }
+
+function *numberOfOccurances(name){
+	return yield chunkCollection.count({ name: name });
+};

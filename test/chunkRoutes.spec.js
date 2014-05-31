@@ -157,6 +157,7 @@ describe("Chunks administration", function () {
 				.expect("location", updateURL)
 				.end(done);
 		});
+
 		it("requires a name", function (done) {
 			delete testChunk.name;
 
@@ -167,8 +168,35 @@ describe("Chunks administration", function () {
 				.expect("ErrorMessage", "Name is required")
 				.end(done);
 		});
-		it("requires name without spaces");
-		it("requires unique name");
+
+		it("requires name without spaces", function (done) {
+			testChunk.name = "Name With Spaces";
+
+			request
+				.put(updateURL)
+				.send(testChunk)
+				.expect(400)
+				.expect("ErrorMessage", "Name cannot contain spaces")
+				.end(done);
+		});
+
+		// TODO: Not sure about the validation here...
+		// It should not allow a name that is already existing
+		// unless it is the own name...
+		// it("requires unique name", function (done) {
+		// 	co(function *() {
+		// 		yield testHelpers.chunks.insert({name: "NotUnique", content : "Some content"}),
+
+		// 		testChunk.name = "NotUnique";
+
+		// 		request
+		// 			.put(updateURL)
+		// 			.send(testChunk)
+		// 			.expect(400)
+		// 			.expect("ErrorMessage", "Name must be unique. 'NotUnique' is already used")
+		// 			.end(done);
+		// 	})();
+		// });
 	});
 
 	describe("Delete existing chunk", function () {

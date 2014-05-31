@@ -7,7 +7,7 @@ var routes = require("koa-route");
 // routes
 // chunks admin
 var chunkRoutes = require("./routes/chunkRoutes.js");
-app.use(routes.get("/chunk", chunkRoutes.home));
+app.use(routes.get("/chunk", chunkRoutes.list));
 app.use(routes.get("/chunk/new", chunkRoutes.add));
 app.use(routes.post("/chunk/new", chunkRoutes.add));
 app.use(routes.get("/chunk/:id", chunkRoutes.get));

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}All chunks{% endblock %}
+
+{% block content %}
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created by</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for chunk in chunks %}
+    <tr>
+      <td>{{ chunk.name }}</td>
+      <td>{{ chunk.created_by }}</td>
+      <td>{{ chunk.created_at.toDateString() }}</td>
+      <td>{{ chunk.updated_at.toDateString() }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

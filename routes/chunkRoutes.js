@@ -1,3 +1,4 @@
+var parse = require("co-body");
 var render = require("../lib/render.js");
 var config = require("../config")();
 var dbWrap = require("../lib/dbWrap.js");
@@ -10,4 +11,16 @@ module.exports.list = function *() {
 
 module.exports.showAdd = function *() {
 	this.body = yield render("chunk_add.html");
+};
+
+module.exports.add = function *() {
+	var chunk = yield parse(this);
+	chunk.created_at = new Date;
+	chunk.updated_at = chunk._created_at;
+	chunk.created_by = "MARCUS"; // TODO: Logged in user
+
+	yield chunkCollection.insert(chunk);
+
+	this.set("location", "/chunk/" + chunk.name);
+	this.status = 201;
 };

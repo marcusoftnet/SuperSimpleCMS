@@ -53,15 +53,34 @@ describe("Chunks administration", function () {
 	});
 
 	describe("Addning new chunk", function () {
+		var testChunkForm  = {};
+
+		beforeEach(function (done) {
+			testChunkForm = {
+				name : "chunkName",
+				content : "some content"
+			};
+			done();
+		});
+
 		it("has a nice form for adding", function (done) {
 			request
 				.get("/chunk/new")
 				.expect("Content-Type", /html/)
       			.expect(200)
-      			.expect(/action=\"\/chunk\/new\"/)
+      			.expect(/action=\"\/chunk\/new\" method=\"post\"/)
 				.end(done);
 		});
-		it("accepts a chunk with all fields set");
+		it("accepts a chunk with all fields set", function (done) {
+			request
+				.post("/chunk/new")
+				.send(testChunkForm)
+				.expect(201)
+				.expect("location", "/chunk/" + testChunkForm.name)
+				.end(done);
+		});
 		it("requires a name");
+		it("requires a name without spaces");
+		it("requires a unique name");
 	})
 });

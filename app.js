@@ -2,10 +2,8 @@ var koa = require("koa");
 var app = module.exports = koa();
 var config = require('./config')();
 var routes = require("koa-route");
-var logger = require('koa-logger');
 
 // middleware
-app.use(logger());
 
 // routes
 // chunks admin

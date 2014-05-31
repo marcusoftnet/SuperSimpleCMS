@@ -24,10 +24,19 @@ describe("Chunks administration", function () {
 
 				request
 					.get("/")
-					.expect('Content-Type', /html/)
+					.expect("Content-Type", /html/)
 	      			.expect(200)
 					.end(done)
 			})();
+		});
+
+		it("has a link to add new chunks", function (done) {
+			request
+				.get("/")
+				.expect("Content-Type", /html/)
+      			.expect(200)
+      			.expect(/<a href=\"\/chunk\/new\"/)
+				.end(done);
 		});
 	});
 });

@@ -50,6 +50,16 @@ module.exports.get = function *(name) {
 	this.body = yield render("chunk_edit.html", {chunk : c});
 };
 
+module.exports.update = function *(name) {
+	var chunk = yield chunkCollection.findOne({name:name});
+	var parsedChunkForm = yield parse(this);
+
+	yield chunkCollection.updateById(chunk._id, parsedChunkForm);
+
+	this.status = 204;
+	this.set("location", "/chunk/" + chunk.name);
+};
+
 function hasSpaces (s) {
 	return s.split(" ").length > 1;
 }

@@ -72,7 +72,7 @@ describe("Chunks administration", function () {
 				.end(done);
 		});
 
-		it("accepts a chunk with all fields set", function (done) {
+		it("add a chunk with all fields set", function (done) {
 			request
 				.post("/chunk/new")
 				.send(testChunkForm)
@@ -117,34 +117,46 @@ describe("Chunks administration", function () {
 	});
 
 	describe("Update existing chunk", function () {
+		var testChunk = {};
 		var chunkName  = "testChunkName";
-		var URL = "/chunk/" + chunkName;
+		var updateURL = "/chunk/" + chunkName;
 
 		beforeEach(function (done) {
 			co(function *() {
-				yield testHelpers.chunks.insert(
+				testChunk =
 					{
 						name: chunkName,
 						content : "Some content",
 						created_by : "Marcus",
-						created_at : new Date(2014-05-31),
-						updated_at : new Date
-					});
+						created_at : new Date("2014/05/31"),
+						updated_at : new Date("2014/06/01")
+					};
+
+				yield testHelpers.chunks.insert(testChunk);
 			})(done);
 		});
 
 		it("has a nice form for editing chunks", function (done) {
 			request
-				.get(URL)
+				.get(updateURL)
 				.expect("Content-Type", /html/)
       			.expect(200)
       			.expect(/action=\"\/chunk\/testChunkName\" method=\"put\"/)
       			.expect(/Marcus/)
       			.expect(/Some content/)
       			.expect(/Sat May 31 2014/)
+      			.expect(/Sun Jun 01 2014/)
 				.end(done);
 		});
-		it("accepts a chunk with all fields set correctly");
+
+		it("updates a chunk with all fields set correctly", function (done) {
+			request
+				.put(updateURL)
+				.send(testChunk)
+				.expect(204)
+				.expect("location", updateURL)
+				.end(done);
+		});
 		it("requires name");
 		it("requires name without spaces");
 		it("requires unique name");

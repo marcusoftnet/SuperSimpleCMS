@@ -216,7 +216,7 @@ describe("Chunks administration", function () {
 
 		it("deletes an existing chunk", function (done) {
 			request
-				.del("/chunk/" + testChunk.name)
+				.get("/chunk/" + testChunk.name + "/delete")
 				.expect(204)
 				.expect("location", "/")
 				.end(done);

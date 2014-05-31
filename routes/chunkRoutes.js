@@ -19,6 +19,12 @@ module.exports.add = function *() {
 	chunk.updated_at = chunk._created_at;
 	chunk.created_by = "MARCUS"; // TODO: Logged in user
 
+	if(!chunk.name){
+		this.set("ErrorMessage", "Name is required");
+		this.status = 400;
+		return;
+	}
+
 	yield chunkCollection.insert(chunk);
 
 	this.set("location", "/chunk/" + chunk.name);

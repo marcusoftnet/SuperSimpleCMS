@@ -79,7 +79,16 @@ describe("Chunks administration", function () {
 				.expect("location", "/chunk/" + testChunkForm.name)
 				.end(done);
 		});
-		it("requires a name");
+		it("requires a name", function (done) {
+			delete testChunkForm.name;
+
+			request
+				.post("/chunk/new")
+				.send(testChunkForm)
+				.expect(400)
+				.expect("errorMessage", "Name is required")
+				.end(done);
+		});
 		it("requires a name without spaces");
 		it("requires a unique name");
 	})

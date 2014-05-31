@@ -10,6 +10,7 @@
       <th>Created by</th>
       <th>Created at</th>
       <th>Updated at</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td>{{ chunk.created_by }}</td>
       <td>{{ chunk.created_at.toDateString() }}</td>
       <td>{{ chunk.updated_at.toDateString() }}</td>
+      <td><a href="/chunk/{{ chunk.name }}" class="btn btn-info btn-xs" role="button">Edit chunk</a></td>
     </tr>
     {% endfor %}
   </tbody>

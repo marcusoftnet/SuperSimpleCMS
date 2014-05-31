@@ -32,7 +32,7 @@ describe("Chunks administration", function () {
 				.expect(/Chunk2/)
 				.expect(/Chunk3/)
       			.expect(200)
-				.end(done)
+				.end(done);
 		});
 
 		it("has a link to add new chunks", function (done) {
@@ -48,7 +48,20 @@ describe("Chunks administration", function () {
   				.expect(/<a href=\"\/chunk\/Chunk1\"/)
   				.expect(/<a href=\"\/chunk\/Chunk2\"/)
   				.expect(/<a href=\"\/chunk\/Chunk3\"/)
-				.end(done)
+				.end(done);
 		});
 	});
+
+	describe("Addning new chunk", function () {
+		it("has a nice form for adding", function (done) {
+			request
+				.get("/chunk/new")
+				.expect("Content-Type", /html/)
+      			.expect(200)
+      			.expect(/action=\"\/chunk\/new\"/)
+				.end(done);
+		});
+		it("accepts a chunk with all fields set");
+		it("requires a name");
+	})
 });

@@ -99,5 +99,19 @@ describe("Chunks administration", function () {
 				.expect("ErrorMessage", "Name cannot contain spaces")
 				.end(done);
 		});
+		it("requires a unique name", function (done) {
+			co(function *() {
+				yield testHelpers.chunks.insert({name: "NotUnique", content : "Some content"}),
+
+				testChunkForm.name = "NotUnique";
+
+				request
+					.post("/chunk/new")
+					.send(testChunkForm)
+					.expect(400)
+					.expect("ErrorMessage", "Name must be unique. 'NotUnique' is already used")
+					.end(done);
+			})();
+		});
 	})
 });

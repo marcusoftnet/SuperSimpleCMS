@@ -31,6 +31,14 @@ module.exports.add = function *() {
 		return;
 	}
 
+	var unique = yield nameUnique(chunk.name);
+	if(!unique){
+		var message = "Name must be unique. '" + chunk.name + "' is already used";
+		this.set("ErrorMessage", message);
+		this.status = 400;
+		return;
+	}
+
 	yield chunkCollection.insert(chunk);
 
 	this.set("location", "/chunk/" + chunk.name);
@@ -40,3 +48,8 @@ module.exports.add = function *() {
 function hasSpaces (s) {
 	return s.split(" ").length > 1;
 }
+
+function *nameUnique(name){
+	var numberOfOccurances = yield chunkCollection.count({ name: name });
+	return numberOfOccurances === 0;
+};

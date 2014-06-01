@@ -2,8 +2,10 @@ var koa = require("koa");
 var app = module.exports = koa();
 var config = require('./config')();
 var routes = require("koa-route");
+var serve = require('koa-static');
 
 // middleware
+app.use(serve(__dirname + '/public'));
 
 // routes
 // chunks admin
